@@ -2,7 +2,13 @@
 const http = require('http');
 
 const server = http.createServer((reg, res) => {
-    console.log("request made");
+    console.log(req.url, req.method);
+
+    //set header type content
+    res.setHeader("Content-Type", "text/plain");
+
+    res.write("Hello ninjas");
+    res.end()
 });
 
 server.listen(3000, "localhost", () => {
