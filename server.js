@@ -7,10 +7,17 @@ const server = http.createServer((reg, res) => {
     //set header type content
     res.setHeader("Content-Type", "text/html");
 
-    res.write(<head><link rel="stylesheet" href="#"></link></head>)
-    res.write("<p>Hello ninjas</p>");
-    res.write("<p>Hello again, ninjas</p>")
-    res.end()
+    // send a html file
+    fs.readFile("./views/index.html", (err, data) => {
+        if (err) {
+            console.log(err);
+            res.end();
+        }
+        else {
+            //res.write(data);
+            res.end(data);
+        }
+    })
 });
 
 server.listen(3000, "localhost", () => {
